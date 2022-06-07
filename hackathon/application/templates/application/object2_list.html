@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Object2 details</title>
-</head>
-<body>
-    <h1> Liste des objects2 : </h1>
-    <ul>
-        {% for object in objects %}
-        <li> <a href="{% url 'object2-details' object.id %}"> {{object.name}} </a> </li>
-        {% endfor %}
-    </ul>
+{% extends 'application/base.html' %}
 
-</body>
-</html>
+{% block baseContent%}
+<h1> Liste des objects2 : </h1>
+<ul>
+    {% for object in objects %}
+    <li> <a href="{% url 'object2-details' object.id %}"> {{object.name}} </a> </li>
+    {% endfor %}
+</ul>
+
+{%endblock%}

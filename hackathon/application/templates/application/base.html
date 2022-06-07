@@ -1,0 +1,24 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <title>MyApp</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="{% static 'application/style.css' %}">
+</head>
+
+<body>
+  <button><a href="{% url 'object-list' %}">Object list</a></button>
+  <button><a href="{% url 'object2-list' %}">Object2 list</a></button>
+
+  {% block baseContent %}
+  {% endblock %}
+
+  <footer>Made for hackaton</footer>
+</body>
+
+
+</html>
