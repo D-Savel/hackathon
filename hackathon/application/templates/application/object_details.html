@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>object details</title>
-</head>
-<body>
+{% extends 'application/base.html' %}
+
+{% block baseContent%}
 <h1> {{objet.name}} </h1>
 <ul>
 
@@ -18,5 +14,4 @@
 
 </ul>
 <a href="{% url 'object-list' %}"> Retourner à la liste des objets </a>
-</body>
-</html>
+{%endblock%}
