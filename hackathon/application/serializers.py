@@ -11,11 +11,11 @@ class ObjectSerializer(ModelSerializer):
 
     class Meta:
         model = Object
-        fields = ['id', 'name', 'date_created', 'date_updated']
+        fields = ['id', 'name', 'date_created', 'date_updated', 'active']
 
 
 class Object2Serializer(ModelSerializer):
 
     class Meta:
         model = Object2
-        fields = ['id', 'name', 'date_created', 'date_updated']
+        fields = ['id', 'name', 'date_created', 'date_updated', 'active']

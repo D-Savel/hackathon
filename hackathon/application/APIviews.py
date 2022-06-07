@@ -13,7 +13,12 @@ class ObjectViewset(ReadOnlyModelViewSet) :
     serializer_class = ObjectSerializer
 
     def get_queryset(self):
-        return Object.objects.all()
+        queryset = Object.objects.all()
+        object_active = self.request.GET.get('object_active')
+        if object_active :
+            queryset = queryset.filter(active = object_active)
+        return queryset
+
 
 
 
@@ -22,4 +27,8 @@ class Object2Viewset(ReadOnlyModelViewSet) :
     serializer_class = Object2Serializer
 
     def get_queryset(self):
-        return Object2.objects.all()
+        queryset = Object.objects.all()
+        object_active = self.request.GET.get('object_active')
+        if object_active :
+            queryset = queryset.filter(active = object_active)
+        return queryset
