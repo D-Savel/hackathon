@@ -5,7 +5,14 @@
 <h1> Liste des objects : </h1>
 <ul>
     {% for object in objects %}
-    <li> <a href="{% url 'object-details' object.id %}"> {{object.name}} </a> </li>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title"><a href="{% url 'object-details' object.id %}">{{object.name}}</a></h5>
+            </h6>
+            <p class="card-text">Description : {{object.description}}</p>
+        </div>
+    </div>
+
     {% endfor %}
 </ul>
 
