@@ -1,1 +1,17 @@
-<p> Lol </p>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>object details</title>
+</head>
+<body>
+
+<h1> Liste des objects : </h1>
+<ul>
+    {% for object in objects %}
+    <li> <a href="{% url 'object-details' object.id %}"> {{object.name}} </a> </li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

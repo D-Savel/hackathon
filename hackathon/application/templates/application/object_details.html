@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>object details</title>
+</head>
+<body>
+<h1> {{objet.name}} </h1>
+<ul>
+
+    <li> Nom : {{object.name}} </li>
+    <li> Description : {{object.description}} </li>
+    <li> Date de création : {{object.date_created}} </li>
+    <li> Date de mise à jour : {{object.date_updated}} </li>
+    <li> Actif : {{object.active|yesno}} </li>
+
+
+
+</ul>
+<a href="{% url 'object-list' %}"> Retourner à la liste des objets </a>
+</body>
+</html>
