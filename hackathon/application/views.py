@@ -19,19 +19,26 @@ environ.Env.read_env()
 
 
 def fetchApi(request):
-
-    url = f"""https://fr.openfoodfacts.org/cgi/search.pl?search_terms=pate+a+tartiner&search_simple=1&action=process&json=1"""
-    response = requests.get(url)
-    response= response.json()
-    productList = response['products']
-    productKeywords = []
+    keywords = ''
     productKeywordsList = []
-    for product in productList :
-        productKeywords = product['product_name_fr'].split(" ")
-        productKeywordsList.append(productKeywords[0])
+    if request.POST:
+        keywords = request.POST.get("keywords")
+        url = f"""https://fr.openfoodfacts.org/cgi/search.pl?search_terms={keywords}&search_simple=1&action=process&json=1"""
+        try :
+            response = requests.get(url)
+            response= response.json()
+            productList = response['products']
+            for product in productList :
+                productKeywords = product['product_name_fr'].split(" ")
+                productKeywordsList.append(productKeywords)
+        except :
+            pass
+    if keywords == '' :
+         productKeywordsList = []
    
     return render(request, 'application/fetchApi.html', {
         'productKeywordsList': productKeywordsList,
+        'keywords': keywords,
             })
     
 def requestdb (request):
