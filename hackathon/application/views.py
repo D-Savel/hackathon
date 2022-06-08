@@ -52,7 +52,12 @@ def requestdb (request):
     cursor = conn.cursor()
 # Opérations à réaliser sur la base ...
 
-    cursor.execute("""SELECT * FROM market_ranking.keyword WHERE keyword='parfum'""", ())
+    cursor.execute("""SELECT *
+                        FROM ranked_page r
+                        INNER JOIN website w ON r.website_id = w.id
+                        INNER JOIN keyword k ON k.id = r.keyword_id
+                        WHERE k.keyword LIKE  '% Nutella %'
+                    """, ())
     rows = cursor.fetchall()
     print(rows)
     conn.close()
