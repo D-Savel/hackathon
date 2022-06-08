@@ -41,5 +41,6 @@ urlpatterns = [
     path('object2/', views.object2_list,  name = 'object2-list'),
     path('object2/<int:id>/', views.object2_details,  name = 'object2-details'),
     path('geoapi/', views.geoapi, name='geoapi'),
+    path('requestdb/', views.requestdb, name='requestdb'),
 
 ]
