@@ -2,10 +2,14 @@ from django.shortcuts import render
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
 from application.models import Object, Object2
+
 import requests
 import environ
+import mysql.connector
+
+
+
 
 env = environ.Env()
 # reading .env file
@@ -55,4 +59,24 @@ def geoapi(request):
         'city': geodata['city'],
         'url': url
     })
+    
+def requestdb (request):
+    conn = mysql.connector.connect(host="51.158.97.130",
+                               user="lovelace", password="yGG6:q22iv", 
+                               database="market_ranking",
+                               port="9622",
+                               use_unicode=True,
+                               charset='utf8')
+    cursor = conn.cursor()
+# Opérations à réaliser sur la base ...
+
+    cursor.execute("""SELECT * FROM market_ranking.keyword WHERE keyword='parfum'""", ())
+    rows = cursor.fetchall()
+    print(rows)
+    conn.close()
+    
+    return render(request, 'application/requestdb.html', {
+        'rows': rows})
+        
+        
 
