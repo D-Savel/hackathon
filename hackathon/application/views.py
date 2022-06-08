@@ -45,7 +45,7 @@ def geoapi(request):
     # API use api-key given by locationiq
     # API_KEY must be save in .env file at the root of the project (same as settings.py)
     # API_KEY=<YOUR_API_KEY> (without '')
-    url = f"""https://maps.locationiq.com/v3/staticmap?key={API_KEY}&center=43.66,3.9726&size=800x800&zoom=13&markers=size:small|color:red|{lat},{lon}"""
+    url = f"""https://maps.locationiq.com/v3/staticmap?key={API_KEY}&center={lat},{lon}&size=800x800&zoom=13&markers=size:small|color:red|{lat},{lon}"""
 
     return render(request, 'application/geoapi.html', {
         'ip': geodata['query'],
