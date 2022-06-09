@@ -28,9 +28,17 @@ def fetchApi(request):
             response = requests.get(url)
             response= response.json()
             productList = response['products']
-            for product in productList :
-                productKeywords = product['product_name_fr'].split(" ")
-                productKeywordsList.append(productKeywords)
+            if len(productList) :
+                for product in productList :
+                    productKeywords = product['product_name_fr'].split(" ")
+                    # reduce productKeywords at k elements
+                    k = 5
+                    n = len(productKeywords) 
+                    for i in range(0, n - k ): 
+                        productKeywords.pop() 
+                    productKeywordsList.append(productKeywords)
+            else:
+              productKeywordsList = ['Pas de réponse pour les mots-clefs proposés']  
         except :
             pass
     if keywords == '' :
