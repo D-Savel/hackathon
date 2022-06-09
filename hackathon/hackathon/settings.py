@@ -95,7 +95,8 @@ DATABASES = {
     }
 }
 
-API_KEY = env("API_KEY")
+
+DATABASE_PASSWORD = env("DATABASE_PASSWORD")
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

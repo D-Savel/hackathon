@@ -9,7 +9,6 @@ import mysql.connector
 
 
 
-
 env = environ.Env()
 # reading .env file
 environ.Env.read_env()
@@ -21,6 +20,7 @@ environ.Env.read_env()
 def fetchApi(request):
     keywords = ''
     productKeywordsList = []
+    reduceProductKeywordsList =[]
     if request.POST:
         keywords = request.POST.get("keywords")
         url = f"""https://fr.openfoodfacts.org/cgi/search.pl?search_terms={keywords}&search_simple=1&action=process&json=1"""
@@ -31,12 +31,19 @@ def fetchApi(request):
             if len(productList) :
                 for product in productList :
                     productKeywords = product['product_name_fr'].split(" ")
+                    productKeywordsList.append(productKeywords)
+                    
+                for product in productList :
+                    productKeywords = product['product_name_fr'].split(" ")
+                    productKeywordsList.append(productKeywords)
                     # reduce productKeywords at k elements
                     k = 5
                     n = len(productKeywords) 
                     for i in range(0, n - k ): 
-                        productKeywords.pop() 
-                    productKeywordsList.append(productKeywords)
+                        productKeywords.pop()
+                    reduceProductKeywordsList.append(productKeywords) 
+                              
+                    
             else:
               productKeywordsList = ['Pas de réponse pour les mots-clefs proposés']  
         except :
@@ -47,11 +54,14 @@ def fetchApi(request):
     return render(request, 'application/fetchApi.html', {
         'productKeywordsList': productKeywordsList,
         'keywords': keywords,
+        'reduceProductKeywordsList' : reduceProductKeywordsList,
             })
     
 def requestdb (request):
+    DATABASE_PASSWORD = env("DATABASE_PASSWORD")
     conn = mysql.connector.connect(host="51.158.97.130",
-                               user="lovelace", password="yGG6:q22iv", 
+                               user="lovelace",
+                               password=DATABASE_PASSWORD, 
                                database="market_ranking",
                                port="9622",
                                use_unicode=True,
@@ -72,5 +82,3 @@ def requestdb (request):
     return render(request, 'application/requestdb.html', {
         'rows': rows})
         
-        
-
