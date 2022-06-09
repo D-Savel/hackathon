@@ -1,14 +1,18 @@
 {% extends 'application/base.html' %}
 
 {% block baseContent%}
-<form class="form-inline my-2 my-lg-0">
-  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+<form class="form-inline py-2 my-2 my-lg-0" method='post'>
+  {% csrf_token %}
+  <input class="form-control mr-sm-2" type="text" placeholder="Mots-clef" aria-label="Search" name="keywords"
+    value={{keywords}}>
   <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-</form>
 
+</form>
 <h2>FETCH API</h2>
-{%for productKeywords in productKeywordsList%}
+{% for productKeywords in productKeywordsList %}
 <p>{{productKeywords}}</p>
-{%endfor%}
+{% empty %}
+<p>Veuillez saisir des mots-clefs pour lancer la recherche</p>
+{% endfor %}
 
 {%endblock%}
