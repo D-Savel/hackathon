@@ -67,7 +67,7 @@ def requestdb (request):
                                use_unicode=True,
                                charset='utf8')
     cursor = conn.cursor()
-# Opérations à réaliser sur la base ...
+# Opérations à réaliser sur la base ... l
 
     cursor.execute("""SELECT *
                         FROM ranked_page r
